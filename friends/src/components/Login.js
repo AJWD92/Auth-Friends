@@ -20,10 +20,15 @@ export const LoginForm = (props) => {
     const login = e => {
         e.preventDefault();
         axiosWithAuth()
-        .post(credentials)
+        .post('login', credentials)
         .then(res => {
             localStorage.setItem('token', res.data.payload);
-            props.history.push('/friends')
+            
+            setCredentials({
+                name: '',
+                password: ''
+            })
+            props.history.push('/FriendsList')
         })
         .catch(err => {
             localStorage.removeItem('token');
@@ -33,7 +38,7 @@ export const LoginForm = (props) => {
     }
 
     return (
-        <div style={{width: '100vw', height:'75vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <div style={{width: '100%', height:'75vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Form onSubmit={login} style={{width: '25vw', flexDirection: 'column', border: '2px solid #000', padding: '25px', boxShadow: '5px 8px 7px #778899'}}>
                 <Form.Group controlId='formBasicUsername'>
                     <Form.Label>Username</Form.Label>

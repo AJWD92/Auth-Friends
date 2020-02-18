@@ -5,10 +5,12 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import LoginForm from './components/Login'
-import Friends from './components/Friends';
 import ProtectedRoute from './components/ProtectedRoute';
+import FriendsList from './components/FriendsList';
+
 
 function App() {
+ 
   return (
     <Router>
       <div className="App">
@@ -17,13 +19,14 @@ function App() {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/friends">Friends list</Link>
+            <Link to="/friends-list">Friends list</Link>
           </li>
         </ul>
         <Switch>
-          <ProtectedRoute exact path='/friends' component={Friends} />
+          <ProtectedRoute exact path='/friends-list' component={FriendsList} />
           <Route path='/login' component={LoginForm} />
           <Route component={LoginForm} />
+          
         </Switch>
       </div>
     </Router>
